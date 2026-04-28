@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Madhava Medicals Clinic — Since 1970</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --forest:#1b3a1b;
+  --forest-2:#2d5a2d;
+  --forest-3:#3d7a3d;
+  --gold:#b8976a;
+  --gold-light:#d4b896;
+  --gold-pale:#f5efe4;
+  --cream:#faf8f2;
+  --paper:#f0ebe0;
+  --ink:#1a1a14;
+  --muted:#6b6b5a;
+  --line:rgba(184,151,106,0.25);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden;}
+
+/* ── Cursor ── */
+*{cursor:none!important;}
+#cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,width 0.3s,height 0.3s,opacity 0.3s;mix-blend-mode:multiply;}
+#cursor-ring{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.18s ease,width 0.3s,height 0.3s,opacity 0.3s;opacity:0.6;}
+
+/* ── Nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;transition:background 0.4s,padding 0.4s;}
+nav.scrolled{background:rgba(250,248,242,0.96);backdrop-filter:blur(14px);padding:14px 60px;border-bottom:1px solid var(--line);}
+.nav-logo{display:flex;align-items:center;gap:12px;}
+.nav-logo img{width:44px;height:44px;object-fit:contain;}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--forest);letter-spacing:-0.3px;}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:500;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1px;background:var(--gold);transition:width 0.3s;}
+.nav-links a:hover{color:var(--forest);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{background:var(--forest);color:var(--gold-light)!important;padding:8px 20px;border-radius:2px;letter-spacing:0.1em!important;transition:background 0.2s!important;}
+.nav-cta:hover{background:var(--forest-2)!important;}
+.nav-cta::after{display:none!important;}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:140px 60px 80px;position:relative;z-index:2;}
+.hero-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::before{content:'';display:block;width:40px;height:1px;background:var(--gold);}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,6vw,86px);font-weight:300;line-height:1.05;color:var(--forest);letter-spacing:-1px;margin-bottom:28px;}
+.hero-title em{font-style:italic;color:var(--gold);}
+.hero-sub{font-size:15px;color:var(--muted);line-height:1.75;max-width:380px;margin-bottom:44px;font-weight:300;}
+.hero-actions{display:flex;gap:16px;align-items:center;}
+.btn-primary{background:var(--forest);color:var(--gold-light);padding:14px 32px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;border:none;font-family:'Jost',sans-serif;font-weight:500;transition:all 0.3s;text-decoration:none;display:inline-block;}
+.btn-primary:hover{background:var(--forest-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(27,58,27,0.25);}
+.btn-outline{color:var(--forest);padding:14px 32px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;border:1px solid var(--forest);font-family:'Jost',sans-serif;font-weight:500;transition:all 0.3s;text-decoration:none;display:inline-block;background:transparent;}
+.btn-outline:hover{background:var(--forest);color:var(--gold-light);}
+.hero-since{position:absolute;bottom:40px;left:60px;font-family:'Cormorant Garamond',serif;font-size:13px;color:var(--gold);letter-spacing:0.15em;display:flex;align-items:center;gap:12px;}
+.hero-since::before{content:'';display:block;width:30px;height:1px;background:var(--gold);}
+
+.hero-right{position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1b3a1b 0%,#2d5a2d 40%,#1b3a1b 100%);}
+.hero-pattern{position:absolute;inset:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,var(--gold) 0,var(--gold) 1px,transparent 0,transparent 50%);background-size:20px 20px;}
+.hero-logo-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.hero-logo-wrap img{width:min(320px,70%);height:auto;filter:brightness(0) invert(1);opacity:0.12;}
+.hero-logo-big{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+.hero-logo-big img{width:min(260px,60%);height:auto;animation:floatLogo 6s ease-in-out infinite;}
+@keyframes floatLogo{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+.hero-scroll{position:absolute;bottom:40px;right:40px;writing-mode:vertical-rl;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:10px;}
+.hero-scroll::after{content:'';display:block;width:1px;height:50px;background:rgba(255,255,255,0.3);animation:scrollLine 2s ease-in-out infinite;}
+@keyframes scrollLine{0%,100%{opacity:0.3;transform:scaleY(1);}50%{opacity:0.8;transform:scaleY(1.2);}}
+
+/* ── Stats ── */
+.stats{background:var(--forest);padding:44px 60px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.08);}
+.stat-item{padding:20px 30px;border-right:1px solid rgba(255,255,255,0.1);text-align:center;}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--gold-light);line-height:1;margin-bottom:6px;}
+.stat-label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.5);}
+
+/* ── Section common ── */
+section{padding:100px 60px;}
+.section-tag{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.section-tag::before{content:'';display:block;width:30px;height:1px;background:var(--gold);}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:300;color:var(--forest);line-height:1.1;letter-spacing:-0.5px;margin-bottom:16px;}
+.section-title em{font-style:italic;color:var(--gold);}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.75;font-weight:300;}
+
+/* ── Services ── */
+#services{background:var(--paper);}
+.services-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-bottom:64px;align-items:end;}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.service-card{background:white;padding:44px 36px;position:relative;overflow:hidden;transition:all 0.4s;group:;}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--gold-light));transform:scaleX(0);transform-origin:left;transition:transform 0.4s;}
+.service-card:hover{background:var(--forest);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-card:hover .s-icon{color:var(--gold-light);}
+.service-card:hover .s-title{color:var(--gold-light);}
+.service-card:hover .s-desc{color:rgba(255,255,255,0.6);}
+.service-card:hover .s-num{color:rgba(255,255,255,0.1);}
+.s-num{position:absolute;top:24px;right:28px;font-family:'Cormorant Garamond',serif;font-size:60px;font-weight:300;color:var(--paper);line-height:1;transition:color 0.4s;}
+.s-icon{font-size:28px;margin-bottom:24px;display:block;transition:color 0.4s;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--forest);margin-bottom:12px;transition:color 0.4s;}
+.s-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;transition:color 0.4s;}
+
+/* ── About ── */
+#about{background:var(--cream);display:grid!important;grid-template-columns:1fr 1fr;gap:0;padding:0!important;}
+.about-visual{background:linear-gradient(160deg,var(--forest) 0%,var(--forest-2) 100%);padding:100px 70px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;}
+.about-visual::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(184,151,106,0.05) 0,rgba(184,151,106,0.05) 1px,transparent 0,transparent 50%);background-size:24px 24px;}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,38px);font-weight:300;color:white;line-height:1.35;position:relative;z-index:1;}
+.about-quote em{font-style:italic;color:var(--gold-light);}
+.about-quote-mark{font-family:'Cormorant Garamond',serif;font-size:120px;color:rgba(184,151,106,0.15);line-height:0.7;margin-bottom:20px;display:block;}
+.about-attr{margin-top:32px;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);position:relative;z-index:1;display:flex;align-items:center;gap:12px;}
+.about-attr::before{content:'';display:block;width:30px;height:1px;background:var(--gold);}
+.about-content{padding:100px 70px;display:flex;flex-direction:column;justify-content:center;}
+.about-body{font-size:15px;color:var(--muted);line-height:1.85;font-weight:300;margin-top:24px;margin-bottom:40px;}
+.about-pills{display:flex;flex-wrap:wrap;gap:10px;}
+.pill{padding:8px 18px;border:1px solid var(--line);font-size:12px;letter-spacing:0.08em;color:var(--forest);font-weight:500;}
+
+/* ── Doctor ── */
+#doctor{background:var(--paper);}
+.doctor-layout{display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:center;margin-top:60px;}
+.doctor-card{background:var(--forest);padding:50px 40px;text-align:center;position:relative;overflow:hidden;}
+.doctor-card::before{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(184,151,106,0.04) 0,rgba(184,151,106,0.04) 1px,transparent 0,transparent 50%);background-size:20px 20px;}
+.doctor-avatar{width:120px;height:120px;border-radius:50%;background:rgba(184,151,106,0.15);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:'Cormorant Garamond',serif;font-size:44px;color:var(--gold-light);position:relative;z-index:1;}
+.doctor-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:white;position:relative;z-index:1;margin-bottom:6px;}
+.doctor-title{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);position:relative;z-index:1;}
+.doctor-divider{width:40px;height:1px;background:var(--gold);margin:20px auto;position:relative;z-index:1;}
+.doctor-timings{position:relative;z-index:1;}
+.timing-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:12px;}
+.timing-day{color:rgba(255,255,255,0.5);letter-spacing:0.06em;}
+.timing-time{color:var(--gold-light);font-weight:500;}
+.doctor-info{display:grid;gap:24px;}
+.info-item{padding:24px 28px;border-left:2px solid var(--gold);background:white;}
+.info-item h4{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--forest);margin-bottom:8px;}
+.info-item p{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;}
+
+/* ── Products ── */
+#products{background:var(--cream);}
+.products-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:60px;}
+.products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.product-card{background:white;padding:28px 24px;border-bottom:2px solid transparent;transition:all 0.3s;position:relative;}
+.product-card:hover{border-bottom-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 32px rgba(27,58,27,0.1);}
+.product-icon{font-size:32px;margin-bottom:16px;display:block;}
+.product-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--forest);margin-bottom:8px;}
+.product-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300;}
+.product-tag{display:inline-block;margin-top:14px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:4px 10px;}
+
+/* ── Contact ── */
+#contact{background:var(--forest);padding:100px 60px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.contact-left .section-tag{color:var(--gold);}
+.contact-left .section-title{color:white;}
+.contact-left .section-sub{color:rgba(255,255,255,0.5);}
+.contact-details{margin-top:44px;display:grid;gap:28px;}
+.contact-item{display:flex;gap:20px;align-items:flex-start;}
+.contact-icon{width:44px;height:44px;border:1px solid rgba(184,151,106,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;color:var(--gold);}
+.contact-text h4{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:white;margin-bottom:4px;}
+.contact-text p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.6;}
+.contact-form{background:rgba(255,255,255,0.04);border:1px solid rgba(184,151,106,0.15);padding:44px;}
+.contact-form h3{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:white;margin-bottom:28px;}
+.form-group{margin-bottom:20px;}
+.form-group label{display:block;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(184,151,106,0.2);padding:12px 16px;color:white;font-family:'Jost',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.25);}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--gold);}
+.form-group textarea{resize:vertical;min-height:100px;}
+.form-group select{color:rgba(255,255,255,0.6);}
+.form-group select option{background:var(--forest);color:white;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.submit-btn{width:100%;background:var(--gold);color:var(--forest);padding:14px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;font-weight:500;border:none;transition:all 0.3s;margin-top:8px;}
+.submit-btn:hover{background:var(--gold-light);transform:translateY(-1px);}
+
+/* ── Footer ── */
+footer{background:#0f220f;padding:40px 60px;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold-light);}
+.footer-since{font-size:11px;letter-spacing:0.14em;color:rgba(255,255,255,0.3);text-transform:uppercase;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+
+/* ── Scroll animations ── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-scale{opacity:0;transform:scale(0.94);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal-scale.visible{opacity:1;transform:scale(1);}
+
+/* ── Divider ornament ── */
+.ornament{text-align:center;padding:20px 0;color:var(--gold);font-size:18px;letter-spacing:12px;opacity:0.5;}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  nav{padding:16px 24px;}
+  nav.scrolled{padding:12px 24px;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{height:300px;}
+  .hero-left{padding:120px 24px 60px;}
+  .hero-since{left:24px;}
+  .stats{grid-template-columns:repeat(2,1fr);padding:40px 24px;}
+  section{padding:70px 24px;}
+  .services-head,.products-head{grid-template-columns:1fr;}
+  .services-grid{grid-template-columns:1fr;}
+  #about{grid-template-columns:1fr!important;}
+  .about-visual{padding:70px 32px;}
+  .about-content{padding:60px 32px;}
+  .doctor-layout{grid-template-columns:1fr;}
+  .products-grid{grid-template-columns:1fr 1fr;}
+  #contact{grid-template-columns:1fr;padding:70px 24px;gap:48px;}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:28px 24px;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Nav -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="logo.png" alt="Madhava Medicals Clinic"/>
+    <span class="nav-brand">Madhava Medicals Clinic</span>
+  </div>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#doctor">Doctor</a>
+    <a href="#products">Products</a>
+    <a href="#contact" class="nav-cta">Contact us</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow reveal">Trusted healthcare since 1970</div>
+    <h1 class="hero-title reveal">Your Health,<br/><em>Our Heritage</em></h1>
+    <p class="hero-sub reveal">A legacy of compassionate care and quality medicines. Madhava Medicals Clinic has served the community for over five decades — combining traditional values with modern medicine.</p>
+    <div class="hero-actions reveal">
+      <a href="#contact" class="btn-primary">Book Appointment</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+    <div class="hero-since">Since 1970</div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg"></div>
+    <div class="hero-pattern"></div>
+    <div class="hero-logo-big">
+      <img src="logo.png" alt="Madhava Medicals Clinic"/>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat-item reveal"><div class="stat-num" data-count="54">0</div><div class="stat-label">Years of service</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="12000">0</div><div class="stat-label">Patients served</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="500">0</div><div class="stat-label">Medicines stocked</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-count="1">0</div><div class="stat-label">Trusted family name</div></div>
+</div>
+
+<!-- Services -->
+<section id="services">
+  <div class="services-head">
+    <div>
+      <div class="section-tag reveal">What we offer</div>
+      <h2 class="section-title reveal">Comprehensive <em>Care</em></h2>
+    </div>
+    <p class="section-sub reveal">From prescription medicines to specialist consultations, we provide everything your family needs under one trusted roof.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal-scale">
+      <span class="s-num">01</span>
+      <span class="s-icon">⚕</span>
+      <h3 class="s-title">Medical Consultation</h3>
+      <p class="s-desc">Expert consultations with experienced physicians. Diagnosis, treatment plans, and follow-up care for all conditions.</p>
+    </div>
+    <div class="service-card reveal-scale">
+      <span class="s-num">02</span>
+      <span class="s-icon">💊</span>
+      <h3 class="s-title">Pharmacy & Medicines</h3>
+      <p class="s-desc">Over 500 medicines in stock. Branded and generic options. Prescription fulfilment and home delivery available.</p>
+    </div>
+    <div class="service-card reveal-scale">
+      <span class="s-num">03</span>
+      <span class="s-icon">🩺</span>
+      <h3 class="s-title">Health Checkups</h3>
+      <p class="s-desc">Routine and preventive health screenings. Blood pressure, sugar, weight, and vitals monitoring at every visit.</p>
+    </div>
+    <div class="service-card reveal-scale">
+      <span class="s-num">04</span>
+      <span class="s-icon">🧪</span>
+      <h3 class="s-title">Lab Tests & Reports</h3>
+      <p class="s-desc">Referrals to trusted diagnostic labs. Help interpreting test results and planning treatment accordingly.</p>
+    </div>
+    <div class="service-card reveal-scale">
+      <span class="s-num">05</span>
+      <span class="s-icon">📋</span>
+      <h3 class="s-title">Prescription Management</h3>
+      <p class="s-desc">Digital prescription records, refill reminders, and medicine interaction advice for your ongoing treatments.</p>
+    </div>
+    <div class="service-card reveal-scale">
+      <span class="s-num">06</span>
+      <span class="s-icon">👨‍👩‍👧</span>
+      <h3 class="s-title">Family Healthcare</h3>
+      <p class="s-desc">Paediatric to geriatric care under one roof. We treat your entire family with the warmth you deserve.</p>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="about-visual">
+    <span class="about-quote-mark">"</span>
+    <p class="about-quote">Medicine is not merely a science but <em>an art of compassion</em>, handed down through generations.</p>
+    <div class="about-attr">Madhava Medicals Clinic, est. 1970</div>
+  </div>
+  <div class="about-content">
+    <div class="section-tag reveal">Our story</div>
+    <h2 class="section-title reveal">Five Decades of <em>Trust</em></h2>
+    <p class="about-body reveal">Founded in 1970, Madhava Medicals Clinic began as a small neighbourhood pharmacy in Chittoor, Andhra Pradesh. Over five decades, we have grown into a comprehensive healthcare destination — combining a full-service medical shop with expert clinical consultations.<br/><br/>Our commitment has never wavered: to provide honest, affordable, and compassionate healthcare to every family that walks through our doors.</p>
+    <div class="about-pills reveal">
+      <span class="pill">Chittoor, AP</span>
+      <span class="pill">Est. 1970</span>
+      <span class="pill">Family owned</span>
+      <span class="pill">Licensed pharmacy</span>
+      <span class="pill">AYUSH registered</span>
+    </div>
+  </div>
+</section>
+
+<!-- Doctor -->
+<section id="doctor">
+  <div class="section-tag reveal">Our physician</div>
+  <h2 class="section-title reveal">Meet the <em>Doctor</em></h2>
+  <div class="doctor-layout">
+    <div class="doctor-card reveal-left">
+      <div class="doctor-avatar">J</div>
+      <div class="doctor-name">Dr. Jaghannathan</div>
+      <div class="doctor-title">General Physician</div>
+      <div class="doctor-divider"></div>
+      <div class="doctor-timings">
+        <div class="timing-row"><span class="timing-day">Mon – Fri</span><span class="timing-time">10 AM – 2 PM</span></div>
+        <div class="timing-row"><span class="timing-day">Mon – Fri</span><span class="timing-time">5 PM – 8:30 PM</span></div>
+        <div class="timing-row"><span class="timing-day">Saturday</span><span class="timing-time">10 AM – 2 PM</span></div>
+        <div class="timing-row"><span class="timing-day">Sunday</span><span class="timing-time">Emergency only</span></div>
+      </div>
+    </div>
+    <div class="doctor-info">
+      <div class="info-item reveal">
+        <h4>Expert Clinical Care</h4>
+        <p>With decades of experience in general medicine, Dr. Jaghannathan offers thorough diagnosis and evidence-based treatment plans for acute and chronic conditions.</p>
+      </div>
+      <div class="info-item reveal">
+        <h4>Personalised Approach</h4>
+        <p>Every patient receives dedicated attention. Dr. Jaghannathan believes in understanding the whole person — not just the symptoms — and tailors treatment accordingly.</p>
+      </div>
+      <div class="info-item reveal">
+        <h4>Continuity of Care</h4>
+        <p>From your first visit to ongoing follow-ups, we maintain complete records and ensure seamless, uninterrupted healthcare for your entire family.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section id="products">
+  <div class="products-head">
+    <div>
+      <div class="section-tag reveal">What we stock</div>
+      <h2 class="section-title reveal">Our <em>Pharmacy</em></h2>
+    </div>
+    <p class="section-sub reveal">We source only from trusted manufacturers. Every medicine is quality-checked and stored under optimal conditions.</p>
+  </div>
+  <div class="products-grid">
+    <div class="product-card reveal-scale">
+      <span class="product-icon">💊</span>
+      <div class="product-name">Prescription Drugs</div>
+      <p class="product-desc">All major brands and generics. Fulfilled instantly with valid prescription.</p>
+      <span class="product-tag">500+ SKUs</span>
+    </div>
+    <div class="product-card reveal-scale">
+      <span class="product-icon">🌿</span>
+      <div class="product-name">Ayurvedic & Herbal</div>
+      <p class="product-desc">Curated herbal supplements, tonics, and traditional formulations.</p>
+      <span class="product-tag">Natural range</span>
+    </div>
+    <div class="product-card reveal-scale">
+      <span class="product-icon">🩹</span>
+      <div class="product-name">Surgical Supplies</div>
+      <p class="product-desc">Bandages, dressings, gloves, syringes, and wound care products.</p>
+      <span class="product-tag">Medical grade</span>
+    </div>
+    <div class="product-card reveal-scale">
+      <span class="product-icon">👶</span>
+      <div class="product-name">Baby & Mother Care</div>
+      <p class="product-desc">Infant nutrition, safe skincare, and maternity wellness products.</p>
+      <span class="product-tag">Trusted brands</span>
+    </div>
+    <div class="product-card reveal-scale">
+      <span class="product-icon">🩺</span>
+      <div class="product-name">Health Devices</div>
+      <p class="product-desc">BP monitors, glucometers, thermometers, and pulse oximeters.</p>
+      <span class="product-tag">Home use</span>
+    </div>
+    <div class="product-card reveal-scale">
+      <span class="product-icon">💉</span>
+      <div class="product-name">Vitamins & Supplements</div>
+      <p class="product-desc">Iron, calcium, vitamin D, multivitamins, and immunity boosters.</p>
+      <span class="product-tag">All age groups</span>
+    </div>
+    <div class="product-card reveal-scale">
+      <span class="product-icon">🧴</span>
+      <div class="product-name">Skincare & Cosmetics</div>
+      <p class="product-desc">Dermatologist-recommended creams, sunscreens, and hygiene products.</p>
+      <span class="product-tag">Medicated range</span>
+    </div>
+    <div class="product-card reveal-scale">
+      <span class="product-icon">❤️</span>
+      <div class="product-name">Cardiac & Diabetes</div>
+      <p class="product-desc">Cardiac medications, insulin, and diabetic care products always in stock.</p>
+      <span class="product-tag">Priority stock</span>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-left">
+    <div class="section-tag">Get in touch</div>
+    <h2 class="section-title">Visit <em>Us</em></h2>
+    <p class="section-sub">We're here six days a week. Walk in anytime or call ahead to book a consultation with Dr. Jaghannathan.</p>
+    <div class="contact-details">
+      <div class="contact-item reveal">
+        <div class="contact-icon">📍</div>
+        <div class="contact-text">
+          <h4>Location</h4>
+          <p>Madhava Medicals Clinic,<br/>Chittoor, Andhra Pradesh, India</p>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">🕐</div>
+        <div class="contact-text">
+          <h4>Pharmacy Hours</h4>
+          <p>Monday – Saturday: 8 AM – 9 PM<br/>Sunday: 9 AM – 1 PM</p>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">📞</div>
+        <div class="contact-text">
+          <h4>Call us</h4>
+          <p>08572 233145<br/>93473 33145</p>
+        </div>
+      </div>
+      <div class="contact-item reveal">
+        <div class="contact-icon">💬</div>
+        <div class="contact-text">
+          <h4>WhatsApp</h4>
+          <p>Send prescriptions and queries<br/>directly via WhatsApp</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form reveal">
+    <h3>Book a Consultation</h3>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Your name</label>
+        <input type="text" placeholder="Full name"/>
+      </div>
+      <div class="form-group">
+        <label>Phone number</label>
+        <input type="tel" placeholder="+91 00000 00000"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Reason for visit</label>
+      <select>
+        <option value="">Select a reason</option>
+        <option>General consultation</option>
+        <option>Follow-up appointment</option>
+        <option>Prescription refill</option>
+        <option>Lab report review</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Preferred date & time</label>
+      <input type="datetime-local"/>
+    </div>
+    <div class="form-group">
+      <label>Message (optional)</label>
+      <textarea placeholder="Any symptoms or concerns you'd like to mention…"></textarea>
+    </div>
+    <button class="submit-btn" onclick="handleSubmit(this)">Send Request</button>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-brand">Madhava Medicals Clinic</div>
+  <div class="footer-since">Est. 1970 · Chittoor, Andhra Pradesh</div>
+  <div class="footer-copy">© 2026 Madhava Medicals Clinic. All rights reserved.</div>
+</footer>
+
+<script>
+const cur=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.service-card,.product-card,.nav-links a').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='16px';cur.style.height='16px';ring.style.width='52px';ring.style.height='52px';ring.style.opacity='0.4';});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='0.6';});
+});
+
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  nav.classList.toggle('scrolled',window.scrollY>60);
+});
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-scale').forEach(el=>observer.observe(el));
+
+function animateCount(el,target,suffix){
+  const dur=2000,steps=60,step=dur/steps;
+  let current=0,i=0;
+  const inc=target/steps;
+  const t=setInterval(()=>{
+    i++;current=Math.min(Math.round(inc*i),target);
+    el.textContent=(target>=1000?current.toLocaleString('en-IN'):current)+(suffix||'');
+    if(i>=steps)clearInterval(t);
+  },step);
+}
+
+const statObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const nums=e.target.querySelectorAll('[data-count]');
+      nums.forEach(el=>animateCount(el,+el.dataset.count,''));
+      statObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.stats').forEach(el=>statObs.observe(el));
+
+function handleSubmit(btn){
+  btn.textContent='Sending…';btn.disabled=true;
+  setTimeout(()=>{btn.textContent='Request Sent ✓';btn.style.background='#2d5a2d';btn.style.color='#d4b896';},1200);
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4)*0.08+'s';});
+</script>
+</body>
+</html>
