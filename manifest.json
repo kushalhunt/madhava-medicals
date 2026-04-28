@@ -1,0 +1,42 @@
+{
+  "name": "Madhava Medicals Clinic",
+  "short_name": "Madhava Clinic",
+  "description": "Your trusted healthcare partner since 1970. Book appointments, view services and contact us.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf8f2",
+  "theme_color": "#1b3a1b",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "medical"],
+  "lang": "en-IN",
+  "shortcuts": [
+    {
+      "name": "Book Appointment",
+      "short_name": "Book",
+      "description": "Book a consultation with Dr. Jaghannathan",
+      "url": "/#contact",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Call Us",
+      "short_name": "Call",
+      "description": "Call Madhava Medicals Clinic",
+      "url": "tel:08572233145",
+      "icons": [{ "src": "logo.png", "sizes": "192x192" }]
+    }
+  ]
+}
