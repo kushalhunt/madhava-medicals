@@ -1,0 +1,71 @@
+diff --git a/index.html b/index.html
+index ed754fe..97f4a82 100644
+--- a/index.html
++++ b/index.html
+@@ -1769,6 +1769,14 @@ canvas.pixel-canvas:hover { transform: scale(1.1); }
+         <label data-i18n="f_age">Age</label>
+         <input type="number" id="f-age" placeholder="Your age" min="0" max="120"/>
+       </div>
++      <div class="form-group">
++        <label data-i18n="f_doctor">Preferred doctor *</label>
++        <select id="f-doctor" required>
++          <option value="" data-i18n="f_doctor_select">Select a doctor</option>
++          <option value="Dr. Jaghannathan" data-i18n="f_doctor_opt1">Dr. Jaghannathan</option>
++          <option value="Dr. J.M. Rohit" data-i18n="f_doctor_opt2">Dr. J.M. Rohit</option>
++        </select>
++      </div>
+       <div class="form-group">
+         <label data-i18n="f_reason">Reason for visit *</label>
+         <select id="f-reason" required>
+@@ -1883,6 +1891,7 @@ async function handleSubmit(e){
+     name:     document.getElementById('f-name').value,
+     phone:    document.getElementById('f-phone').value,
+     age:      document.getElementById('f-age').value,
++    doctor:   document.getElementById('f-doctor').value,
+     reason:   document.getElementById('f-reason').value,
+     datetime: document.getElementById('f-datetime').value,
+     message:  document.getElementById('f-message').value,
+@@ -2886,7 +2895,9 @@ const TRANSLATIONS = {
+     // Form
+     form_title:'Book a Consultation', form_success_h:'Request Received',
+     form_success_p:'Thank you! We will call you to confirm your appointment shortly.',
+-    f_name:'Your name *', f_phone:'Phone number *', f_age:'Age', f_reason:'Reason for visit *',
++    f_name:'Your name *', f_phone:'Phone number *', f_age:'Age',
++    f_doctor:'Preferred doctor *', f_doctor_select:'Select a doctor', f_doctor_opt1:'Dr. Jaghannathan', f_doctor_opt2:'Dr. J.M. Rohit',
++    f_reason:'Reason for visit *',
+     f_select:'Select a reason', f_opt1:'General consultation', f_opt2:'Ayurvedic consultation',
+     f_opt3:'Follow-up appointment', f_opt4:'Prescription refill', f_opt5:'Lab report review', f_opt6:'Other',
+     f_datetime:'Preferred date & time *', f_msg:'Message (optional)', f_submit:'Send Request',
+@@ -2958,7 +2969,9 @@ const TRANSLATIONS = {
+     ct_call_h:'మాకు కాల్ చేయండి', ct_wa_h:'వాట్సాప్', ct_wa_p:'ప్రిస్క్రిప్షన్‌లు మరియు ప్రశ్నలు<br/>నేరుగా వాట్సాప్ ద్వారా పంపండి',
+     form_title:'సంప్రదింపు బుక్ చేయండి', form_success_h:'అభ్యర్థన స్వీకరించబడింది',
+     form_success_p:'ధన్యవాదాలు! మీ అపాయింట్‌మెంట్ నిర్ధారించడానికి మేము త్వరలో కాల్ చేస్తాం.',
+-    f_name:'మీ పేరు *', f_phone:'ఫోన్ నంబర్ *', f_age:'వయస్సు', f_reason:'సందర్శన కారణం *',
++    f_name:'మీ పేరు *', f_phone:'ఫోన్ నంబర్ *', f_age:'వయస్సు',
++    f_doctor:'ఇష్టపడే వైద్యుడు *', f_doctor_select:'వైద్యుడిని ఎంచుకోండి', f_doctor_opt1:'డా. జగన్నాథన్', f_doctor_opt2:'డా. జె.ఎం. రోహిత్',
++    f_reason:'సందర్శన కారణం *',
+     f_select:'కారణం ఎంచుకోండి', f_opt1:'సాధారణ సంప్రదింపు', f_opt2:'ఆయుర్వేద సంప్రదింపు',
+     f_opt3:'ఫాలో-అప్ అపాయింట్‌మెంట్', f_opt4:'ప్రిస్క్రిప్షన్ రిఫిల్', f_opt5:'లాబ్ రిపోర్ట్ సమీక్ష', f_opt6:'ఇతర',
+     f_datetime:'అనుకూలమైన తేదీ & సమయం *', f_msg:'సందేశం (ఐచ్ఛికం)', f_submit:'అభ్యర్థన పంపండి',
+@@ -3029,7 +3042,9 @@ const TRANSLATIONS = {
+     ct_call_h:'எங்களை அழையுங்கள்', ct_wa_h:'வாட்ஸ்அப்', ct_wa_p:'மருந்துச் சீட்டுகள் மற்றும் கேள்விகளை<br/>நேரடியாக வாட்ஸ்அப் மூலம் அனுப்புங்கள்',
+     form_title:'சந்திப்பை பதிவு செய்யுங்கள்', form_success_h:'கோரிக்கை பெறப்பட்டது',
+     form_success_p:'நன்றி! உங்கள் சந்திப்பை உறுதிப்படுத்த நாங்கள் விரைவில் அழைப்போம்.',
+-    f_name:'உங்கள் பெயர் *', f_phone:'தொலைபேசி எண் *', f_age:'வயது', f_reason:'வருகையின் காரணம் *',
++    f_name:'உங்கள் பெயர் *', f_phone:'தொலைபேசி எண் *', f_age:'வயது',
++    f_doctor:'விருப்பமான மருத்துவர் *', f_doctor_select:'மருத்துவரைத் தேர்ந்தெடுக்கவும்', f_doctor_opt1:'டாக்டர் ஜகந்நாதன்', f_doctor_opt2:'டாக்டர் ஜே.எம். ரோஹித்',
++    f_reason:'வருகையின் காரணம் *',
+     f_select:'காரணத்தை தேர்ந்தெடுங்கள்', f_opt1:'பொது ஆலோசனை', f_opt2:'ஆயுர்வேத ஆலோசனை',
+     f_opt3:'தொடர் சந்திப்பு', f_opt4:'மருந்துச் சீட்டு நிரப்பல்', f_opt5:'ஆய்வக அறிக்கை மதிப்பாய்வு', f_opt6:'மற்றவை',
+     f_datetime:'விரும்பிய தேதி & நேரம் *', f_msg:'செய்தி (விருப்பத்தேர்வு)', f_submit:'கோரிக்கையை அனுப்புங்கள்',
+@@ -3100,7 +3115,9 @@ const TRANSLATIONS = {
+     ct_call_h:'हमें कॉल करें', ct_wa_h:'व्हाट्सएप', ct_wa_p:'प्रिस्क्रिप्शन और सवाल<br/>सीधे व्हाट्सएप पर भेजें',
+     form_title:'परामर्श बुक करें', form_success_h:'अनुरोध प्राप्त हुआ',
+     form_success_p:'धन्यवाद! आपकी अपॉइंटमेंट की पुष्टि के लिए हम जल्द ही कॉल करेंगे।',
+-    f_name:'आपका नाम *', f_phone:'फोन नंबर *', f_age:'उम्र', f_reason:'आने का कारण *',
++    f_name:'आपका नाम *', f_phone:'फोन नंबर *', f_age:'उम्र',
++    f_doctor:'पसंदीदा डॉक्टर *', f_doctor_select:'डॉक्टर चुनें', f_doctor_opt1:'डॉ. जगन्नाथन', f_doctor_opt2:'डॉ. जे.एम. रोहित',
++    f_reason:'आने का कारण *',
+     f_select:'कारण चुनें', f_opt1:'सामान्य परामर्श', f_opt2:'आयुर्वेदिक परामर्श',
+     f_opt3:'फॉलो-अप अपॉइंटमेंट', f_opt4:'प्रिस्क्रिप्शन रिफिल', f_opt5:'लैब रिपोर्ट समीक्षा', f_opt6:'अन्य',
+     f_datetime:'पसंदीदा तारीख & समय *', f_msg:'संदेश (वैकल्पिक)', f_submit:'अनुरोध भेजें',
